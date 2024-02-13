@@ -8,7 +8,7 @@ const app = express();
 const cors = require("cors");
 app.use(express.json());
 app.use(cookieParser());
-
+const path=require("path");
 
 app.use(cors({
   origin: [
@@ -33,6 +33,10 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/profile', require('./routes/profile'));
 app.use('/api/legal', require('./routes/legal'));
 
+app.use(express.static('client/dist'));
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve('client','dist','index.html'));
+});
 
 app.listen(PORT, err => {
   if (err) throw err;

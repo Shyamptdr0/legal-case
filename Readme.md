@@ -1,4 +1,4 @@
-# Basic Authentication
+# Legal Notifier
 
 ## Description
 This project is a small web application built with Express.js and React.js. It provides basic user authentication using JWT and stores user data in a MongoDB database.

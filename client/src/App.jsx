@@ -17,7 +17,7 @@ export default function App() {
        <Routes>
        <Route exact path="/" element={<AfterLoginRoutes> <Home/> </AfterLoginRoutes>}/>
         <Route exact path="/profile" element={<AfterLoginRoutes> <Profile/> </AfterLoginRoutes> }/>
-        <Route exact path="/casedetails/:id" element={<> <CaseDetailPage/> </> }/>
+        <Route exact path="/casedetails/:id" element={<AfterLoginRoutes> <CaseDetailPage/> </AfterLoginRoutes> }/>
         <Route exact path="/signin" element={<BeforeLoginRoutes> <SignIn/> </BeforeLoginRoutes>}/>
         <Route exact path="/signup" element={<BeforeLoginRoutes><SignUp/></BeforeLoginRoutes> }/>
         <Route path="*" element={<Error404Page/>}/>

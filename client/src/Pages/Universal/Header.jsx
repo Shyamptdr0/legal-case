@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <div className="flex justify-between items-center py-4 px-6 bg-gray-800 text-white">
-      <div>Legal Case Notifier</div>
+      <a href="/" className="text-2xl font-bold cursor-pointer "  > Legal Case Notifier</a>
       {userdata ? (
         <div className="relative">
           <button onClick={toggleDropdown} className="flex items-center focus:outline-none">
@@ -24,7 +24,7 @@ const Header = () => {
           {showDropdown && (
             <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
               <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</Link>
-              <Link to="/settings" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</Link>
+              <Link to="/EditProfile" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</Link>
               <hr />
               <button onClick={logout} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Logout</button>
             </div>

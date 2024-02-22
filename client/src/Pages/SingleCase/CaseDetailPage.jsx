@@ -19,6 +19,7 @@ const CaseDetailPage = () => {
     const fetchCase = async () => {
       try {
         const response = await axios.get(`/api/legal/getcase/${id}`);
+        response.data.dates.sort((a, b) => new Date(b.date) - new Date(a.date));
         setCaseData(response.data);
       } catch (error) {
         console.error('Error fetching case:', error);
@@ -68,7 +69,7 @@ const CaseDetailPage = () => {
       </div>
 
       {/* Add new date button */}
-      <button onClick={() => setShowAddDateModal(true)} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
+      <button onClick={() => setShowAddDateModal(true)} className="px-4 py-2 m-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">
         Add New Date
       </button>
 
@@ -88,7 +89,7 @@ const CaseDetailPage = () => {
               <textarea id="newDateDescription" value={newDateDescription} onChange={e => setNewDateDescription(e.target.value)} className="form-textarea mt-1 block w-full" rows="3"></textarea>
             </div>
             <div className="text-right">
-              <button onClick={handleAddDate} className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">Add</button>
+              <button onClick={handleAddDate} className="px-4 py-2  bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none">Add</button>
               <button onClick={() => setShowAddDateModal(false)} className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md ml-2 hover:bg-gray-400 focus:outline-none">Cancel</button>
             </div>
           </div>

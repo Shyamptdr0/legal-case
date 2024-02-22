@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { useAuth } from '../Context/AuthContext';
+import axios from 'axios';
 
 const EditProfile = () => {
   const { userdata, updateProfile } = useAuth();
   const [username, setUsername] = useState(userdata.username);
   const [email, setEmail] = useState(userdata.email);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    updateProfile({ username, email });
+    try {
+      await axios.post('/api/profile/update', { username, email }); // Send a POST request to the backend /update endpoint with the updated user data
+      // console.log('Profile updated successfully');
+      alert('Profile updated successfully');
+    } catch (error) {
+      alert('Error updating profile:', error);
+      // console.error('Error updating profile:', error);
+    }
   };
 
   return (

@@ -23,19 +23,27 @@ const Home = () => {
         </button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {cases.map((caseItem) => (
-          <div key={caseItem._id} className="bg-white rounded-lg shadow-md p-4">
-            <Link to={`/casedetails/${caseItem._id}`} className="text-xl font-semibold mb-2">{caseItem.name}</Link>
-            <p className="text-gray-600 mb-2">{caseItem.description}</p>
-            {/* Display date and time */}
-            <p className="text-gray-600 mb-2">Date: {caseItem.date}</p>
-            <p className="text-gray-600 mb-4">Time: {caseItem.time}</p>
-            <button onClick={() => deleteCase(caseItem._id)} className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none">
-              Delete
-            </button>
-          </div>
-        ))}
+        {cases.map((caseItem) => {
+          // Find the latest date from the dates array
+          const lastDate = caseItem?.dates.length && caseItem?.dates?.reduce((prev, current) => (new Date(prev?.date) > new Date(current?.date)) ? prev : current);
+
+          return (
+            <div key={caseItem._id} className="bg-white rounded-lg shadow-md p-4">
+              <Link  to={`/casedetails/${caseItem._id}`}>
+              <div className="text-xl font-semibold mb-2">{caseItem.name}</div>
+              <p className="text-gray-600 mb-2">{caseItem?.description}</p>
+              {/* Display date and time */}
+              <p className="text-gray-600 mb-2">Date: {lastDate?.date}</p>
+              <p className="text-gray-600 mb-2">Last Updated: {lastDate?.description}</p>
+              </Link>
+              <button onClick={() => deleteCase(caseItem._id)} className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none">
+                Delete
+              </button>
+            </div>
+          );
+        })}
       </div>
+
       {showModal && (<CreateNewCaseModal newCaseData={newCaseData} setNewCaseData={setNewCaseData} handleCreateCase={handleCreateCase} setShowModal={setShowModal} />)}
     </div>
   );

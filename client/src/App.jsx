@@ -9,6 +9,7 @@ import AfterLoginRoutes from './Pages/ProtectedRoutes/AfterLoginRoutes'
 import Error404Page from './Pages/ErrorPage/Error404Page'
 import BeforeLoginRoutes from './Pages/ProtectedRoutes/BeforeLoginRoutes'
 import CaseDetailPage from './Pages/SingleCase/CaseDetailPage'
+import EditProfile from './Pages/Profile/Editprofile'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
        <Routes>
        <Route exact path="/" element={<AfterLoginRoutes> <Home/> </AfterLoginRoutes>}/>
         <Route exact path="/profile" element={<AfterLoginRoutes> <Profile/> </AfterLoginRoutes> }/>
+        <Route exact path="/EditProfile" element={<AfterLoginRoutes> <EditProfile/> </AfterLoginRoutes>}/>
         <Route exact path="/casedetails/:id" element={<AfterLoginRoutes> <CaseDetailPage/> </AfterLoginRoutes> }/>
         <Route exact path="/signin" element={<BeforeLoginRoutes> <SignIn/> </BeforeLoginRoutes>}/>
         <Route exact path="/signup" element={<BeforeLoginRoutes><SignUp/></BeforeLoginRoutes> }/>

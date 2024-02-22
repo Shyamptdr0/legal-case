@@ -6,8 +6,23 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [userdata, setUser] = useState({});
+  
+  const [userdata, setUser, setUserdata] = useState({ });
 
+  const updateProfile = (newProfileData) => {
+    // Update user's profile data (e.g., make API call to update user data)
+    setUserdata({ ...userdata, ...newProfileData });
+  };
+
+  // Other authentication functions (login, logout, etc.)
+
+  const value = {
+    userdata,
+    updateProfile,
+    // Other authentication values/functions to be provided
+  };
+
+  
   const fetchUser = async () => {
     try {
       const response = await axios.get('/api/profile/userdata', {
@@ -36,8 +51,11 @@ export const AuthProvider = ({ children }) => {
     fetchUser();
   }, []);
 
+
+
+  
   return (
-    <AuthContext.Provider value={{ userdata, logout }}>
+    <AuthContext.Provider value={{ userdata, logout, value }}>
       {children}
     </AuthContext.Provider>
   );

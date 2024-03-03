@@ -11,6 +11,7 @@ import BeforeLoginRoutes from './Pages/ProtectedRoutes/BeforeLoginRoutes'
 import CaseDetailPage from './Pages/SingleCase/CaseDetailPage'
 import EditProfile from './Pages/Profile/Editprofile'
 
+
 export default function App() {
   return (
     <div>

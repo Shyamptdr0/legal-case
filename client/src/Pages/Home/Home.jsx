@@ -4,6 +4,8 @@ import CreateNewCaseModal from './CreateNewCaseModal';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+
+  
   const { cases, deleteCase, createCase } = useCaseContext();
   const [showModal, setShowModal] = useState(false);
   const [newCaseData, setNewCaseData] = useState({ name: '', description: '', date: '', time: '' }); // Add date and time to initial state
@@ -13,6 +15,12 @@ const Home = () => {
     setShowModal(false);
     // Reset form fields after creating a case
     setNewCaseData({ name: '', description: '', date: '', time: '' });
+  };
+
+  // Function to format date
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(); // Adjust the formatting as per your requirements
   };
 
   return (
@@ -32,8 +40,8 @@ const Home = () => {
               <Link  to={`/casedetails/${caseItem._id}`}>
               <div className="text-xl font-semibold mb-2">{caseItem.name}</div>
               <p className="text-gray-600 mb-2">{caseItem?.description}</p>
-              {/* Display date and time */}
-              <p className="text-gray-600 mb-2">Date: {lastDate?.date}</p>
+              {/* Display formatted date */}
+              <p className="text-gray-600 mb-2">Date: {lastDate && formatDate(lastDate.date)}</p>
               <p className="text-gray-600 mb-2">Last Updated: {lastDate?.description}</p>
               </Link>
               <button onClick={() => deleteCase(caseItem._id)} className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none">
